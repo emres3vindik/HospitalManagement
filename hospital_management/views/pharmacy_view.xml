@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hospital_pharmacy_tree" model="ir.ui.view">
+        <field name="name">hospital.pharmacy.tree</field>
+        <field name="model">hospital.pharmacy</field>
+        <field name="arch" type="xml">
+            <tree export_xlsx="0">
+                <field name="medicine"/>
+                <field name="barcode"/>
+                <field name="manufacturer"/>
+                <field name="category"/>
+                <field name="stock_quantity"/>
+                <field name="price" widget="monetary"/>
+                <field name="stock_value" widget="monetary" options="{'currency_field': 'currency_id'}"
+                       decoration-danger="stock_value &gt; 1000"
+                       decoration-warning="stock_value &gt;= 500 and stock_value &lt;= 1000"
+                       decoration-success="stock_value &lt; 500" sum="Total Stock Value"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="description" invisible="1"/>
+                <field name="image" widget="image" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hospital_pharmacy_form" model="ir.ui.view">
+        <field name="name">hospital.pharmacy.form</field>
+        <field name="model">hospital.pharmacy</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h5>
+                            <field name="barcode" decoration-danger="1" required="1"/>
+                        </h5>
+                        <h1>
+                            <label for="medicine" string="Name" class="oe_edit_only"/>
+                            <field name="medicine" required="1" decoration-success="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="manufacturer" required="1"/>
+                            <field name="category" required="1"/>
+                            <field name="stock_quantity" required="1"/>
+                        </group>
+                        <group>
+                            <field name="price" widget="monetary" options="{'currency_field': 'currency_id'}"
+                                   required="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="description" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hospital_pharmacy" model="ir.actions.act_window">
+        <field name="name">Pharmacy</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.pharmacy</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Öncelikle İlaç ekleyin!
+            </p>
+        </field>
+    </record>
+
+</odoo>
+

@@ -1,0 +1,4 @@
+id,name,active
+patient_tag_ceo,CeoY,True
+patient_tag_adult,AdultY,True
+patient_tag_mrs,MrsY,True

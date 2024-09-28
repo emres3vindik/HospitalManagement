@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_hospital_male_patient" model="ir.actions.act_window">
+        <field name="name">Male Patients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_gender':'male' , 'hide_gender':1}</field>
+        <field name="domain">[('gender','=','male')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Öncelikle Erkek hasta ekleyin!
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+            id="menu_male_patient"
+            name="Male Patients"
+            action="action_hospital_male_patient"
+            parent="menu_patient_master"
+            sequence="30"/>
+</odoo>
+
+
+
+
